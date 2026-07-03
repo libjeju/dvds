@@ -24,11 +24,11 @@ recommended-books/
 
 ## 처음 게시하는 방법
 
-1. GitHub 조직 또는 도서관 공식 계정에서 공개 저장소 `recommended-books`를 만듭니다.
+1. GitHub 조직 또는 도서관 공식 계정에서 공개 저장소 `recommended-dvds`를 만듭니다.
 2. 이 압축파일의 **내용물 전체**를 저장소 최상위에 업로드합니다. 압축파일 자체를 올리지 않습니다.
 3. 저장소에서 **Settings → Pages → Build and deployment**로 이동합니다.
 4. Source에서 **Deploy from a branch**, Branch에서 **main**, Folder에서 \*\*/(root)\*\*를 선택하고 저장합니다.
-5. Pages 화면에 표시된 주소를 엽니다. 일반적인 주소 형식은 `https://계정명.github.io/recommended-books/`입니다.
+5. Pages 화면에 표시된 주소를 엽니다. 일반적인 주소 형식은 `https://계정명.github.io/recommended-dvds/`입니다.
 6. 발송용 도구는 `.../email/2026-07-08/`에서 엽니다. 제목과 서식 본문을 복사해 제주대학교 웹메일에 붙여 넣습니다.
 
 ## 실제 메일 발송
