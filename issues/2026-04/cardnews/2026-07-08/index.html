@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="제주대학교 중앙도서관 2026년 7–8월 이 달의 추천DVD 카드뉴스 — 당신에게 뜨거운 여름을" name="description"/>
+<title>당신에게 뜨거운 여름을 — 카드뉴스 v8 | 제주대학교 중앙도서관</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --dark:    #D0AF81;
+  --white:   #FFFFFF;
+  --ivory:   #F7F2EA;
+  --gold:    #9A6A33;
+  --gold-lt: #B98849;
+  --c1: #5B7A8F;
+  --c2: #7C6A8E;
+  --c3: #8A6B5A;
+  --c4: #A36B73;
+  --c5: #A88442;
+}
+
+html, body {
+  height: 100%;
+  background: #0a0a0a;
+  font-family: 'Noto Sans KR','Noto Sans CJK KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── PAGE ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  gap: 14px;
+}
+
+/* ── VIEWER: square, clips everything ── */
+.viewer {
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 32px 96px rgba(0,0,0,0.75);
+  user-select: none;
+}
+
+/* ── TRACK: horizontal slide strip ── */
+.track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform;
+}
+
+/* ── CARD: fills one viewer slot ── */
+.card {
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── NAV BUTTONS ── */
+.nav-btn {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 10;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none; cursor: pointer;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.45; transition: opacity 0.2s, background 0.2s;
+}
+.nav-btn:hover { opacity: 1; background: rgba(0,0,0,0.4); }
+.nav-prev { left: 10px; }
+.nav-next { right: 10px; }
+
+/* ── CONTROLS BAR ── */
+.controls-bar {
+  width: 100%; max-width: 560px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+.counter {
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  letter-spacing: 1px; min-width: 36px;
+}
+.dots-row {
+  flex: 1; display: flex;
+  justify-content: center; align-items: center; gap: 6px;
+}
+.dot {
+  height: 5px; width: 5px; border-radius: 3px;
+  background: rgba(255,255,255,0.18);
+  border: none; padding: 0; cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.dot.active { background: var(--gold); width: 18px; }
+.auto-btn {
+  font-size: 10px; font-family: 'Noto Sans KR','Noto Sans CJK KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color: rgba(255,255,255,0.32);
+  background: none; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 4px 10px;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.auto-btn:hover { color: #4A3515; border-color: rgba(255,255,255,0.28); }
+.auto-btn.playing { color: var(--gold); border-color: var(--gold); }
+.credit {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.15);
+}
+
+/* ════════════════════════════════
+   CARD 01 — TITLE
+════════════════════════════════ */
+.card-01 {
+  background: var(--dark);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.card-01::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%,
+    rgba(185,136,73,.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+.card-01 .c {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 8% 10%; text-align: center;
+}
+.card-01 .lib-badge {
+  font-size: clamp(9px, 2vw, 11px);
+  font-weight: 400; letter-spacing: 3.5px;
+  color: var(--gold); text-transform: uppercase;
+}
+.card-01 .sunset { width: clamp(50px, 17%, 90px); flex-shrink: 0; }
+.card-01 .main-title {
+  font-family: 'Noto Serif KR','Noto Serif CJK KR','AppleMyungjo','Malgun Gothic',serif;
+  font-size: clamp(34px, 11vw, 62px);
+  font-weight: 700; color: var(--ivory);
+  line-height: 1.04; letter-spacing: -2px;
+}
+.card-01 .divider {
+  width: 22px; height: 1px;
+  background: var(--gold); opacity: 0.55; flex-shrink: 0;
+}
+.card-01 .subtitle {
+  font-size: clamp(12px, 2.7vw, 14.5px);
+  font-weight: 300; letter-spacing: 1.5px;
+  color: #5B4326;
+}
+.card-01 .bottom-bar {
+  width: 100%; display: flex;
+  align-items: center; justify-content: space-between;
+  padding-top: 5%; border-top: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.card-01 .b-lib {
+  font-size: clamp(11px, 2.5vw, 13.5px); color: #6B4C28;
+}
+.card-01 .b-date {
+  font-family: 'Noto Serif KR','Noto Serif CJK KR','AppleMyungjo','Malgun Gothic',serif;
+  font-size: clamp(12px, 2.7vw, 14.5px); color: var(--gold);
+}
+
+
+/* ════════════════════════════════
+   PICK CARDS — CSS Grid layout
+   grid-template-rows: 50% 50%
+   ensures definite heights for children
+════════════════════════════════ */
+.pick-card {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 100%;
+}
+
+/* ── Light variant (white bg) ── */
+.pl { background: #FCFAF6; }
+.pl .cover-zone { background: #F3E9DB; }
+.pl .dvd-cover-img {
+  box-shadow:
+    0 20px 56px rgba(0,0,0,0.12),
+    0 6px 16px rgba(0,0,0,0.07),
+    0 1px 4px rgba(0,0,0,0.04);
+}
+.pl .dvd-title  { color:#4B3822; }
+.pl .dvd-author { color:rgba(75,56,34,.55); }
+/* White-background cards: improve legibility while preserving a calm editorial tone. */
+.pl .dvd-desc   { color:rgba(75,56,34,.82); }
+.pl .meta-sep   { background:rgba(75,56,34,.18); }
+
+/* ── Dark variant ── */
+.pd { background: var(--dark); }
+.pd .cover-zone { background: #907455; }
+.pd .dvd-cover-img {
+  box-shadow:
+    0 20px 56px rgba(0,0,0,0.65),
+    0 8px 20px rgba(0,0,0,0.45),
+    0 2px 6px rgba(0,0,0,0.3);
+}
+.pd .dvd-title  { color: var(--ivory); }
+.pd .dvd-author { color: rgba(245,240,232,0.38); }
+.pd .dvd-desc   { color: rgba(245,240,232,0.46); }
+.pd .meta-sep    { background: rgba(245,240,232,0.18); }
+
+/* ── COVER ZONE (top 50%) ── */
+.cover-zone {
+  /* grid item: inherits 50% of card height as definite height */
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 13% 3%;
+}
+
+/* Image: max-height 100% of cover-zone content box, auto width */
+.dvd-cover-img {
+  display: block;
+  max-height: 100%;
+  max-width: 52%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ── TEXT ZONE (bottom 50%) ── */
+.text-zone {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3% 8% 5%;
+  text-align: center;
+  gap: 0;
+}
+
+.meta-row {
+  display: flex; align-items: center;
+  justify-content: center; gap: 8px;
+  margin-bottom: clamp(7px, 1.6%, 10px);
+}
+.pick-num {
+  font-size: clamp(9px, 1.9vw, 10.5px);
+  font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+}
+.meta-sep { width: 1px; height: 9px; flex-shrink: 0; }
+.dvd-tag {
+  font-size: clamp(9px, 1.9vw, 10.5px);
+  font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 20px;
+}
+.dvd-title {
+  font-family: 'Noto Serif KR','Noto Serif CJK KR','AppleMyungjo','Malgun Gothic',serif;
+  font-weight: 700; line-height: 1.15;
+  word-break: keep-all; overflow-wrap: break-word;
+  margin-bottom: clamp(5px, 1.2%, 8px);
+}
+.dvd-author {
+  font-size: clamp(12.5px, 2.8vw, 14.5px);
+  font-weight: 300; letter-spacing: 0.2px;
+  margin-bottom: clamp(6px, 1.4%, 9px);
+}
+.dvd-desc {
+  font-size: clamp(11.5px, 2.5vw, 13.5px);
+  font-weight: 400;
+  line-height: 1.62;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  max-width: min(92%, 430px);
+  text-wrap: balance;
+}
+
+/* ── Per-card accents ── */
+.card-02 .pick-num { color: var(--c2); }
+.card-02 .dvd-tag { color: var(--c2); background: rgba(124,106,142,0.10); border: 1px solid rgba(124,106,142,0.25); }
+.card-02 .dvd-title { font-size: clamp(26px, 9vw, 46px); }
+
+.card-03 .pick-num { color: var(--c1); }
+.card-03 .dvd-tag { color: var(--c1); background: rgba(91,122,143,0.10); border: 1px solid rgba(91,122,143,0.24); }
+.card-03 .dvd-title { font-size: clamp(17px, 6vw, 30px); }
+
+.card-04 .pick-num { color: var(--c4); }
+.card-04 .dvd-tag { color: var(--c4); background: rgba(163,107,115,0.10); border: 1px solid rgba(163,107,115,0.24); }
+.card-04 .dvd-title { font-size: clamp(22px, 7.8vw, 40px); }
+
+.card-05 .pick-num { color: var(--c4); }
+.card-05 .dvd-tag { color: var(--c4); background: rgba(163,107,115,0.10); border: 1px solid rgba(163,107,115,0.24); }
+.card-05 .dvd-title { font-size: clamp(28px, 9.5vw, 50px); }
+
+.card-06 .pick-num { color: var(--c5); }
+.card-06 .dvd-tag { color: var(--c5); background: rgba(168,132,66,0.10); border: 1px solid rgba(168,132,66,0.24); }
+.card-06 .dvd-title { font-size: clamp(14px, 5.3vw, 27px); }
+
+.card-07 .pick-num { color: var(--gold-lt); }
+.card-07 .dvd-tag { color: var(--gold-lt); background: rgba(185,136,73,0.12); border: 1px solid rgba(185,136,73,0.28); }
+.card-07 .dvd-title { font-size: clamp(22px, 7.8vw, 40px); }
+
+
+/* ════════════════════════════════
+   CARD 08 — REMAINING DVDS
+════════════════════════════════ */
+.card-08 {
+  background: #F7F2EA;
+  display: flex; flex-direction: column;
+}
+.card-08 .inner {
+  display: flex; flex-direction: column;
+  height: 100%; overflow: hidden;
+  padding: 7% 7% 6%;
+}
+.card-08 .hdr {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4%; padding-bottom: 3%;
+  border-bottom: 1px solid rgba(75,56,34,0.12);
+  flex-shrink: 0;
+}
+.card-08 .hdr h2 {
+  font-family: 'Noto Serif KR','Noto Serif CJK KR','AppleMyungjo','Malgun Gothic',serif;
+  font-size: clamp(16px, 5vw, 26px);
+  font-weight: 700; color: var(--dark);
+}
+.card-08 .hdr span {
+  font-size: clamp(10px, 2vw, 12px);
+  color: rgba(75,56,34,0.45);
+}
+.card-08 .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4% 5%;
+  flex: 1; min-height: 0; overflow: hidden;
+  align-content: start;
+}
+.sec-label {
+  font-size: clamp(8px, 1.8vw, 10px);
+  font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px; padding-bottom: 4px;
+  border-bottom: 1px solid rgba(154,106,51,0.28);
+}
+.sec-dvds { list-style: none; margin-top: 3px; }
+.sec-dvds li {
+  font-size: clamp(10px, 2.2vw, 12.5px);
+  font-weight: 400; color: var(--dark);
+  line-height: 1.6; word-break: keep-all; padding: 1px 0;
+}
+.sec-dvds li::before { content: '— '; color: rgba(192,144,80,0.4); font-size: 9px; }
+
+
+/* ════════════════════════════════
+   CARD 09 — CLOSING
+════════════════════════════════ */
+.card-09 {
+  background: var(--dark);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.card-09::before, .card-09::after {
+  content: '';
+  position: absolute; border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.card-09::before { width: 72%; aspect-ratio: 1/1; border: 1px solid rgba(185,136,73,0.14); }
+.card-09::after  { width: 48%; aspect-ratio: 1/1; border: 1px solid rgba(185,136,73,0.24); }
+
+.card-09 .c {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 8% 11%; text-align: center; gap: 5%;
+}
+.card-09 .c-label {
+  font-size: clamp(9px, 2vw, 11px);
+  font-weight: 400; letter-spacing: 3.5px; text-transform: uppercase;
+  color: var(--gold); opacity: 0.85;
+}
+.card-09 .c-title {
+  font-family: 'Noto Serif KR','Noto Serif CJK KR','AppleMyungjo','Malgun Gothic',serif;
+  font-size: clamp(22px, 7.5vw, 40px);
+  font-weight: 700; color: var(--ivory);
+  line-height: 1.2; letter-spacing: -1px;
+}
+.card-09 .gold-rule {
+  width: 22px; height: 1px;
+  background: var(--gold); opacity: 0.5; flex-shrink: 0;
+}
+.card-09 .access-box {
+  display: flex; flex-direction: column; gap: 9px; width: 100%;
+}
+.card-09 .access-item {
+  display: flex; align-items: flex-start;
+  gap: 14px; text-align: left;
+}
+.card-09 .a-badge {
+  font-size: clamp(9px, 2vw, 10.5px);
+  font-weight: 500; letter-spacing: 0.5px; color: var(--gold);
+  background: rgba(185,136,73,0.12); border: 1px solid rgba(185,136,73,0.28);
+  border-radius: 3px;
+  width: 56px; height: 26px;
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+}
+.card-09 .a-text {
+  font-size: clamp(10px, 2.2vw, 12.5px);
+  font-weight: 300; color: rgba(245,240,232,0.5);
+  line-height: 1.65; word-break: keep-all;
+}
+.card-09 .a-text strong { color: rgba(245,240,232,0.82); font-weight: 500; }
+.card-09 .c-footer {
+  font-size: clamp(9px, 1.9vw, 11px);
+  color: rgba(255,255,255,0.75); letter-spacing: 0.5px;
+}
+
+
+/* ── v8 requested revisions ── */
+.card-01 .lib-badge {
+  font-size: clamp(11px, 2.5vw, 13.5px);
+  letter-spacing: 0.45px;
+  text-transform: none;
+  white-space: nowrap;
+}
+.dvd-desc {
+  width: 100%;
+  max-width: min(92%, 430px);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Do not force manual two-line breaks. Let the browser wrap Korean text naturally. */
+.dvd-desc .desc-line { display: inline; }
+.dvd-desc .desc-line + .desc-line::before { content: " "; }
+.card-08 .sec-label {
+  font-size: calc(clamp(8px, 1.8vw, 10px) + 1pt);
+}
+.card-08 .sec-dvds li {
+  font-size: calc(clamp(10px, 2.2vw, 12.5px) + 1pt);
+  line-height: 1.52;
+}
+.card-09 .c-label {
+  letter-spacing: 0.45px;
+  text-transform: none;
+  white-space: nowrap;
+}
+.card-09 .access-box {
+  width: 86%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── card 08 dash visibility fix ── */
+.card-08 .sec-dvds li::before {
+  content: '— ';
+  color: #9A6A33;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 1;
+}
+.card-09 .access-item {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 330px);
+  align-items: center;
+  justify-content: center;
+}
+.card-09 .a-text { width: 100%; }
+
+/* ── GitHub Pages utilities ── */
+.download-row {
+  width: 100%; max-width: 560px;
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+}
+.download-link {
+  min-height: 40px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 18px; color: rgba(255,255,255,0.78);
+  font-size: 11px; font-weight: 600; text-decoration: none;
+}
+.download-link:hover, .download-link:focus-visible {
+  border-color: var(--gold); color: var(--gold); outline: none;
+}
+.nav-btn:focus-visible, .dot:focus-visible, .auto-btn:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 3px;
+}
+.viewer { touch-action: pan-y; }
+html.export-mode body { background: transparent; }
+html.export-mode .page { padding: 0; display: block; min-height: auto; }
+html.export-mode .viewer { width: 540px; max-width: none; height: 540px; border-radius: 0; box-shadow: none; }
+html.export-mode .track { transition: none !important; }
+html.export-mode .controls-bar,
+html.export-mode .download-row,
+html.export-mode .credit,
+html.export-mode .nav-btn { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .track, .dot, .nav-btn, .auto-btn { transition: none !important; }
+}
+@media (max-width: 430px) {
+  .page { padding-left: 10px; padding-right: 10px; }
+  .card-01 .lib-badge, .card-09 .c-label { letter-spacing: 0.2px; }
+  .card-09 .access-box { width: 90%; }
+}
+
+</style>
+</head>
+<body>
+<div class="page">
+<div class="viewer" id="viewer">
+<div class="track" id="track">
+<!-- ══ CARD 01: Title ══ -->
+<div class="card card-01">
+<div class="c">
+<span class="lib-badge">제주대학교 중앙도서관 이 달의 추천DVD</span>
+<div class="sunset">
+  <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="sunGrad" cx="45%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#FFF3D6"></stop>
+        <stop offset="100%" stop-color="#E8B14D"></stop>
+      </radialGradient>
+    </defs>
+    <circle cx="40" cy="40" r="37" fill="none" stroke="#C56A2B" stroke-width="1.5" opacity="0.75"></circle>
+    <circle cx="40" cy="40" r="28" fill="none" stroke="#C56A2B" stroke-width="1.2" opacity="0.9"></circle>
+    <circle cx="40" cy="40" r="16" fill="url(#sunGrad)" opacity="0.95"></circle>
+  </svg>
+</div>
+<h1 class="main-title">당신에게<br/>뜨거운<br/>여름을</h1>
+<div class="divider"></div>
+<p class="subtitle">숨 가쁜 순간, 당신과 함께할 여름의 조각들 20편</p>
+<div class="bottom-bar">
+<span class="b-lib">제주대학교 중앙도서관</span>
+<span class="b-date">2026. 07–08</span>
+</div>
+</div>
+</div>
+<!-- ══ CARD 02: 탑 건: 매버릭 ══ -->
+<div class="card pick-card pl card-02">
+<div class="cover-zone">
+<img alt="탑 건: 매버릭 표지" class="dvd-cover-img" decoding="sync" loading="eager" src="../../assets/covers/2026-07-08/top gun maverick.png"/>
+</div>
+<div class="text-zone">
+<div class="meta-row">
+<span class="pick-num">Pick 01</span>
+<span class="meta-sep"></span>
+<span class="dvd-tag">액션</span>
+</div>
+<h2 class="dvd-title">탑 건: 매버릭</h2>
+<p class="dvd-author">조셉 코신스키</p>
+<p class="dvd-desc">30여 년 만에 전설적인 파일럿으로 돌아온 매버릭의 마지막 비행을 담은 압도적인 공중 액션 블록버스터.</p>
+</div>
+</div>
+<!-- ══ CARD 03: 캐리비안의 해적: 죽은 자는 말이 없다 ══ -->
+<div class="card pick-card pd card-03">
+<div class="cover-zone">
+<img alt="캐리비안의 해적: 죽은 자는 말이 없다" class="dvd-cover-img" decoding="sync" loading="eager" src="../../assets/covers/2026-07-08/pirates of the caribbean dead men tell no tales.png"/>
+</div>
+<div class="text-zone">
+<div class="meta-row">
+<span class="pick-num">Pick 02</span>
+<span class="meta-sep"></span>
+<span class="dvd-tag">어드벤처</span>
+</div>
+<h2 class="dvd-title">캐리비안의 해적<br/>죽은 자는 말이 없다</h2>
+<p class="dvd-author">요아킴 뢴닝, 에스펜 산베르그</p>
+<p class="dvd-desc"><span class="desc-line">모든 해적들을 몰살하려는 바다의 학살자 '살라자르'에 맞서,</span><span class="desc-line">포세이돈의 삼지창을 찾기 위한 잭 스패로우의 모험.</span></p>
+</div>
+</div>
+<!-- ══ CARD 04: 다만 악에서 구하소서 ══ -->
+<div class="card pick-card pl card-04">
+<div class="cover-zone">
+<img alt="다만 악에서 구하소서" class="dvd-cover-img" decoding="sync" loading="eager" src="../../assets/covers/2026-07-08/deliver us from evil.png"/>
+</div>
+<div class="text-zone">
+<div class="meta-row">
+<span class="pick-num">Pick 03</span>
+<span class="meta-sep"></span>
+<span class="dvd-tag">범죄</span>
+</div>
+<h2 class="dvd-title">다만 악에서 구하소서</h2>
+<p class="dvd-author">홍원찬</p>
+<p class="dvd-desc"><span class="desc-line">죄를 짓는 자와 구원을 찾는 자.</span><span class="desc-line">피할 수 없는 악연 속에서 서로를 파멸로 몰아넣는 두 남자의 처절한 사투.</span></p>
+</div>
+</div>
+<!-- ══ CARD 05: 너의 결혼식 ══ -->
+<div class="card pick-card pd card-05">
+<div class="cover-zone">
+<img alt="너의 결혼식 표지" class="dvd-cover-img" decoding="sync" loading="eager" src="../../assets/covers/2026-07-08/on your wedding day.png"/>
+</div>
+<div class="text-zone">
+<div class="meta-row">
+<span class="pick-num">Pick 04</span>
+<span class="meta-sep"></span>
+<span class="dvd-tag">로맨스</span>
+</div>
+<h2 class="dvd-title">너의 결혼식</h2>
+<p class="dvd-author">이석근</p>
+<p class="dvd-desc"><span class="desc-line">첫사랑을 향한 열 번의 엇갈림 끝에 마주한 운명.</span><span class="desc-line">사랑은 타이밍이라고 말하는 두 남녀의 10년 서사.</span></p>
+</div>
+</div>
+<!-- ══ CARD 06: 날씨의 아이 ══ -->
+<div class="card pick-card pl card-06">
+<div class="cover-zone">
+<img alt="날씨의 아이" class="dvd-cover-img" decoding="sync" loading="eager" src="../../assets/covers/2026-07-08/weathering with you.png"/>
+</div>
+<div class="text-zone">
+<div class="meta-row">
+<span class="pick-num">Pick 05</span>
+<span class="meta-sep"></span>
+<span class="dvd-tag">애니메이션</span>
+</div>
+<h2 class="dvd-title">날씨의 아이</h2>
+<p class="dvd-author">신카이 마코토</p>
+<p class="dvd-desc"><span class="desc-line">비가 그치지 않는 도쿄, 기도만으로 날씨를 맑게 하는 소녀를 만난 소년.</span><span class="desc-line">세상의 균형을 뒤흔들며 선택한 두 사람의 운명.</span></p>
+</div>
+</div>
+<!-- ══ CARD 08: Remaining 14 dvds ══ -->
+<div class="card card-08">
+<div class="inner">
+<div class="hdr">
+<h2>이 영화도 함께</h2>
+<span>전체 20편 중 나머지 15편</span>
+</div>
+<div class="grid">
+<div>
+<div class="sec-label">01 · 이열치열, 뜨거운 열정</div>
+<ul class="sec-dvds">
+<li>헌트</li>
+<li>분노의 질주: 홉스 & 쇼</li>
+<li>툼 레이더</li>
+</ul>
+</div>
+<div>
+<div class="sec-label">02 · 미지를 탐사하는 낭만</div>
+<ul class="sec-dvds">
+<li>쥬만지: 새로운 세계</li>
+<li>스타워즈: 깨어난 포스</li>
+<li>퓨리오사: 매드맥스 사가</li>
+<li>쥬라기 월드: 도미니언</li>
+</ul>
+</div>
+<div>
+<div class="sec-label">03 · 숨을 죄이는 진득함</div>
+<ul class="sec-dvds">
+<li>23 아이덴티티</li>
+<li>범죄도시 2</li>
+<li>밀수</li>
+<li>종이달</li>
+</ul>
+</div>
+<div>
+<div class="sec-label">04 · 은하수 아래의 연인들</div>
+<ul class="sec-dvds">
+<li>오늘 밤, 세계에서 이 사랑이 사라진다 해도</li>
+<li>사랑도 통역이 되나요</li>
+<li>(잊지마 내가,) 너와 사랑한 시간</li>
+</ul>
+<div class="sec-label" style="margin-top:7%;">05 · 상상이 함께하는 밤</div>
+<ul class="sec-dvds">
+<li>장화 신은 고양이: 끝내주는 모험</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- ══ CARD 09: Closing ══ -->
+<div class="card card-09">
+<div class="c">
+<span class="c-label">제주대학교 중앙도서관 이 달의 추천DVD</span>
+<div class="gold-rule"></div>
+<h2 class="c-title">당신에게 뜨거운<br/>여름을</h2>
+<div class="gold-rule"></div>
+<div class="access-box">
+<div class="access-item">
+<span class="a-badge">온라인</span>
+<span class="a-text">도서관 홈페이지에서 영화명을 검색해<br/>소장 위치와 대출 상태를 확인하세요.<br/><strong>lib.jejunu.ac.kr</strong></span>
+</div>
+<div class="access-item">
+<span class="a-badge">오프라인</span>
+<span class="a-text">중앙디지털도서관 1층 추천DVD 서가에서<br/>영화를 직접 만나보세요.<br/>2026. 07. 01 – 08. 31</span>
+</div>
+</div>
+<p class="c-footer">2026년 7–8월 · 20편 · 다섯 가지 여름 나기 방법</p>
+</div>
+</div>
+</div><!-- /track -->
+<button aria-label="이전 카드" class="nav-btn nav-prev" id="prevBtn" type="button">‹</button>
+<button aria-label="다음 카드" class="nav-btn nav-next" id="nextBtn" type="button">›</button>
+</div><!-- /viewer -->
+<div class="controls-bar">
+<div aria-live="polite" class="counter"><span id="curNum">1</span> / 8</div>
+<div class="dots-row" id="dotsRow"></div>
+<button class="auto-btn" id="autoBtn" type="button">▶ 자동</button>
+</div>
+<div class="download-row">
+<a class="download-link" href="../../">추천DVD 홈</a>
+<a class="download-link" href="../../newsletter/2026-07-08/">뉴스레터 보기</a>
+<a class="download-link" download="" href="png/cardnews-2026-07-08.zip">게시용 PNG 8장 받기</a>
+<a class="download-link" download="" href="png/cardnews-montage.png">전체 미리보기</a>
+</div>
+<p class="credit">제주대학교 중앙도서관 · 2026</p>
+</div>
+<script>
+(function() {
+  if (new URLSearchParams(location.search).has('export')) {
+    document.documentElement.classList.add('export-mode');
+  }
+  const track   = document.getElementById('track');
+  const dotsRow = document.getElementById('dotsRow');
+  const curNum  = document.getElementById('curNum');
+  const autoBtn = document.getElementById('autoBtn');
+  const TOTAL   = 8;
+  let cur = 0, autoId = null;
+
+  for (let i = 0; i < TOTAL; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', (i + 1) + '번 카드');
+    d.addEventListener('click', () => goTo(i));
+    dotsRow.appendChild(d);
+  }
+
+  function goTo(n) {
+    cur = ((n % TOTAL) + TOTAL) % TOTAL;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    curNum.textContent = cur + 1;
+    document.querySelectorAll('.dot').forEach((d, i) =>
+      d.classList.toggle('active', i === cur));
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(cur - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(cur + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  goTo(cur - 1);
+    if (e.key === 'ArrowRight') goTo(cur + 1);
+  });
+
+  let startX = 0;
+  const viewer = document.getElementById('viewer');
+  viewer.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  viewer.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(cur + (dx > 0 ? -1 : 1));
+  }, { passive: true });
+
+  autoBtn.addEventListener('click', () => {
+    if (autoId) {
+      clearInterval(autoId); autoId = null;
+      autoBtn.textContent = '▶ 자동';
+      autoBtn.classList.remove('playing');
+    } else {
+      autoId = setInterval(() => goTo(cur + 1), 2800);
+      autoBtn.textContent = '■ 정지';
+      autoBtn.classList.add('playing');
+    }
+  });
+})();
+</script>
+</body>
+</html>
